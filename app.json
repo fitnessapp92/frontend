@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Fitness app",
+    "slug": "Fitness",
+    "privacy": "public",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/images/app-logo.png",
+    "splash": {
+      "image": "./src/assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "androidNavigationBar": {
+      "visible": "immersive"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "test.company.yourappname",
+      "versionCode": 1
+    }
+  }
+}
