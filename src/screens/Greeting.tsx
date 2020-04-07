@@ -20,7 +20,8 @@ export default function Greeting({ navigation }) {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate("UserData");
-    }, 6000);
+      // 6000
+    }, 0);
   }, []);
 
   useEffect(() => {

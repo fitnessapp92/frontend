@@ -7,6 +7,11 @@ import SRC from "src/screens";
 
 const theme = {
   Text: {
+    h1Style: {
+      color: "#fff",
+      textAlign: "center",
+      fontSize: 38,
+    },
     h2Style: {
       color: "#fff",
       textAlign: "center",
