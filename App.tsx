@@ -1,6 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { Text } from "react-native"
 import { ThemeProvider } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
+
+import { useFonts } from '@use-expo/font';
 
 // ! SRC - temp name
 import SRC from "src/screens";
@@ -8,13 +11,15 @@ import SRC from "src/screens";
 const theme = {
   Text: {
     h1Style: {
-      color: "#fff",
+      color: "#fff", 
       textAlign: "center",
+      // fontFamily: "MontserratItalic",
       fontSize: 38,
     },
     h2Style: {
       color: "#fff",
       textAlign: "center",
+      // fontFamily: "MontserratItalic",
     },
   },
   Button: {
@@ -27,7 +32,23 @@ const theme = {
   },
 };
 
+
 export default function App() {
+  // let [fontsLoaded] = useFonts({
+  //   'Montserrat': require('assets/fonts/monteserat/Montserrat-Black.ttf'),
+  //   'MontserratItalic': require('assets/fonts/monteserat/Montserrat-ThinItalic.ttf'),
+  // });
+
+
+
+  // // ! TEMP
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
+
+ 
+  // console.log("fontsLoaded", fontsLoaded)
+
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>

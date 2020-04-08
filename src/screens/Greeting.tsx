@@ -21,7 +21,7 @@ export default function Greeting({ navigation }) {
     setTimeout(() => {
       navigation.navigate("UserData");
       // 6000
-    }, 0);
+    }, 6000);
   }, []);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function Greeting({ navigation }) {
       >
         <ImageBackground
           style={styles.bgImage}
-          source={require("assets/images/Greeting/greeting.jpg")}
+          source={require("assets/images/Greeting/greeting1.jpg")}
         />
       </Animated.View>
       <View style={styles.content}>
