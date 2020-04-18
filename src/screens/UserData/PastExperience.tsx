@@ -9,32 +9,32 @@ import { styles } from "styles/screens/UserData/PastExperience";
 const WEEK_DAYS = [
   {
     title: "Mon",
-    value: "mon",
+    value: "mon"
   },
   {
     title: "Tue",
-    value: "tue",
+    value: "tue"
   },
   {
     title: "Wed",
-    value: "wed",
+    value: "wed"
   },
   {
     title: "Thu",
-    value: "thu",
+    value: "thu"
   },
   {
     title: "Fri",
-    value: "fri",
+    value: "fri"
   },
   {
     title: "Sat",
-    value: "sat",
+    value: "sat"
   },
   {
     title: "Sun",
-    value: "sun",
-  },
+    value: "sun"
+  }
 ];
 
 const PastExperience = ({ navigation }) => {
@@ -42,7 +42,7 @@ const PastExperience = ({ navigation }) => {
   const [weeks, setWeeks] = useState(["mon", "wed", "fri"]);
 
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.slider}>
         <Slider value={value} onValueChange={(value) => setValue(value)} />
       </View>
@@ -75,15 +75,12 @@ const PastExperience = ({ navigation }) => {
           />
         ))}
       </View>
-
-      <View style={styles.nextBtn}>
-        <Button title="Next" onPress={() => navigation.navigate("Main")} />
-      </View>
-    </>
+    </View>
   );
 };
 
 export default withWrapper(PastExperience, {
-  header: "How much have you exercised int the past?",
-  bg: require("assets/images/UserData/PastExperience.jpg"),
+  header: "How often do you exercise?",
+  nextComponent: "Main",
+  bgSource: require("assets/images/UserData/PastExperience.jpg")
 });

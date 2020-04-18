@@ -1,0 +1,100 @@
+{
+  "strict": {
+    "text-hint-color": "#fff",
+    "text-font-family": "test",
+
+    "text-heading-1-font-size": 34,
+    "text-heading-1-font-weight": "700",
+    "text-heading-1-font-family": "Overpass-SemiBold",
+
+    "text-heading-6-font-size": 16,
+    "text-heading-6-font-weight": "700",
+    "text-heading-6-font-family": "Overpass-Bold",
+
+    "text-subtitle-1-font-size": 15,
+    "text-subtitle-1-font-weight": "600",
+    "text-subtitle-2-font-family": "test",
+
+    "text-paragraph-1-font-size": 15,
+    "text-paragraph-1-font-weight": "400",
+    "text-paragraph-2-font-family": "test",
+
+    "text-caption-1-font-size": 12,
+    "text-caption-1-font-weight": "400",
+    "text-caption-2-font-family": "test",
+
+    "text-label-font-size": 16,
+    "text-label-font-weight": "bold",
+    "text-label-font-family": "test"
+  },
+  "components": {
+    "Text": {
+      "meta": {},
+      "appearances": {
+        "outlione": {
+          "mapping": {},
+          "variantGroups": {
+            "status": {
+              "primary": {}
+            }
+          }
+        }
+      }
+    },
+    "Button": {
+      "meta": {
+        "appearances": {
+          "filled": {
+            "default": true
+          }
+        }
+      },
+      "appearances": {
+        "outlione": {
+          "mapping": {},
+          "variantGroups": {
+            "status": {
+              "primary": {}
+            }
+          }
+        },
+        "filled": {
+          "mapping": {},
+          "variantGroups": {
+            "status": {
+              "primary": {}
+            }
+          }
+        }
+      }
+    },
+    "Input": {
+      "meta": {
+        "scope": "mobile",
+        "appearances": {},
+        "states": {},
+        "parameters": {},
+        "variantGroups": {
+          "size": {
+            "tiny": {
+              "default": true
+            }
+          }
+        }
+      },
+      "appearances": {
+        "default": {
+          "mapping": {},
+          "variantGroups": {
+            "size": {
+              "tiny": {
+                "minHeight": 20,
+                "paddingVertical": 2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

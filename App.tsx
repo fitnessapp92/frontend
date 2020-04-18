@@ -1,59 +1,43 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Text } from "react-native"
-import { ThemeProvider } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
+import { useFonts } from "@use-expo/font";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
 
-import { useFonts } from '@use-expo/font';
+import * as eva from "@eva-design/eva";
+import {
+  ApplicationProvider,
+  IconRegistry,
+  Layout
+} from "@ui-kitten/components";
+import { default as theme } from "./theme.json";
+import { default as customMapping } from "./custom-mapping.json";
 
 // ! SRC - temp name
 import SRC from "src/screens";
 
-const theme = {
-  Text: {
-    h1Style: {
-      color: "#fff", 
-      textAlign: "center",
-      // fontFamily: "MontserratItalic",
-      fontSize: 38,
-    },
-    h2Style: {
-      color: "#fff",
-      textAlign: "center",
-      // fontFamily: "MontserratItalic",
-    },
-  },
-  Button: {
-    buttonStyle: {
-      paddingLeft: 30,
-      paddingRight: 30,
-      paddingTop: 15,
-      paddingBottom: 15,
-    },
-  },
-};
-
-
 export default function App() {
-  // let [fontsLoaded] = useFonts({
-  //   'Montserrat': require('assets/fonts/monteserat/Montserrat-Black.ttf'),
-  //   'MontserratItalic': require('assets/fonts/monteserat/Montserrat-ThinItalic.ttf'),
-  // });
+  let [fontsLoaded] = useFonts({
+    "Overpass-SemiBold": require("./src/assets/fonts/overpass/Overpass-SemiBold.ttf"),
+    "Overpass-Bold": require("./src/assets/fonts/overpass/Overpass-Bold.ttf"),
+    test: require("./src/assets/fonts/overpass/Overpass-ThinItalic.ttf")
+  });
 
-
-
-  // // ! TEMP
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
-
- 
-  // console.log("fontsLoaded", fontsLoaded)
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <SRC />
-      </NavigationContainer>
-    </ThemeProvider>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider
+        {...eva}
+        customMapping={customMapping}
+        theme={{ ...eva.dark, ...theme }}
+      >
+        <NavigationContainer>
+          <SRC />
+        </NavigationContainer>
+      </ApplicationProvider>
+    </>
   );
 }

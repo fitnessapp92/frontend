@@ -2,14 +2,13 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   goals: {
+    flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
-    width: "80%",
-    marginTop: 20,
-    // borderWidth: 4,
-    // borderColor: "red"
+    alignItems: "center",
+    marginTop: 20
   },
   goal: {
-    marginTop: 20,
-  },
+    width: "95%",
+    marginTop: 20
+  }
 });

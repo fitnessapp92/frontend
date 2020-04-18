@@ -1,33 +1,39 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center"
+  },
+
   slider: {
     width: "80%",
-    marginTop: 30,
+    marginTop: 30
   },
   sliderTextContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     // borderWidth: 1,
     // borderColor: "green",
-    width: "80%",
+    width: "80%"
   },
   exerciseTime: {
     width: "90%",
-    marginTop: 30,
+    marginTop: 30
   },
   week: {
     flexDirection: "row",
     justifyContent: "space-around",
 
     width: "90%",
-    marginBottom: 10,
+    marginBottom: 10
   },
   sliderText: {},
   nextBtn: {
     paddingTop: 20,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   day: {
     padding: 0,
@@ -37,9 +43,9 @@ export const styles = StyleSheet.create({
     paddingRight: 0,
     borderRadius: 20,
     width: 44,
-    height: 44,
+    height: 44
   },
   dayTitle: {
-    marginTop: -5,
-  },
+    marginTop: -5
+  }
 });

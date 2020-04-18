@@ -1,7 +1,9 @@
 .expo/*
 .expo-shared/*
 .idea/*
+.vscode/
 node_modules/*
+web-build/*
 
 # macOS
 .DS_Store

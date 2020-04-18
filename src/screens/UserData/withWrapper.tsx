@@ -1,20 +1,60 @@
 import React from "react";
-import { View, ImageBackground } from "react-native";
-import { Text } from "react-native-elements";
+import { View, ImageBackground, ImagePropsBase } from "react-native";
+import { Text, Layout, Button, Icon } from "@ui-kitten/components";
 
 import { styles } from "styles/screens/UserData/withWrapper";
- 
-const withWrapper = (WrappedComponent, { header, bg }) => {
+
+// ! TEMP
+type Props = {
+  header: string;
+  bgSource?: ImagePropsBase;
+  nextComponent?: string;
+};
+
+const NextIcon = (props) => (
+  <Icon style={styles.buttonIconNext} {...props} name="arrow-forward-outline" />
+);
+
+const withWrapper = (
+  WrappedComponent,
+  { header, bgSource, nextComponent }: Props
+) => {
   return (props) => {
-    return (
-      <View style={styles.container}>
-        <ImageBackground source={bg} style={styles.bg}>
-          <View style={styles.header}>
-            <Text style={{fontFamily: "MontserratItalic"}} h1>{header}</Text>
+    console.log("props", props);
+    let content = (
+      <>
+        <View style={styles.header}>
+          <Text category="h1" style={styles.headerText}>
+            {header}
+          </Text>
+        </View>
+        <WrappedComponent {...props} />
+        {nextComponent && (
+          <View style={styles.nextBtnWrapper}>
+            <Button
+              appearance="outline"
+              size="giant"
+              accessoryRight={NextIcon}
+              onPress={() => props.navigation.navigate(nextComponent)}
+            >
+              NEXT
+            </Button>
           </View>
-          <WrappedComponent {...props} />
-        </ImageBackground>
-      </View>
+        )}
+      </>
+    );
+
+    let bg = null;
+    if (bgSource) {
+      bg = <ImageBackground source={bgSource} style={styles.bgImage} />;
+    }
+
+    return (
+      <>
+        {bg}
+        <View style={styles.bgColor} />
+        <View style={styles.content}>{content}</View>
+      </>
     );
   };
 };

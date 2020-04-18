@@ -10,18 +10,18 @@ const GOALS = [
   {
     title: "Lose weight",
     value: "lose_weight",
-    subtitle: "You will be stronger",
+    subtitle: "You will be stronger"
   },
   {
     title: "Get weight",
     value: "get_weight",
-    subtitle: "You will be stronger",
+    subtitle: "You will be stronger"
   },
   {
     title: "Get muscle",
     value: "get_muscle",
-    subtitle: "You will be stronger",
-  },
+    subtitle: "You will be stronger"
+  }
 ];
 
 const Goal = ({ navigation }) => {
@@ -33,7 +33,6 @@ const Goal = ({ navigation }) => {
             <ListItem
               title={goal.title}
               subtitle={goal.subtitle}
-              containerStyle={styles.goal}
               onPress={() => navigation.navigate("PastExperience")}
             />
           </View>
@@ -45,5 +44,5 @@ const Goal = ({ navigation }) => {
 
 export default withWrapper(Goal, {
   header: "What's you goal?",
-  bg: require("assets/images/UserData/Goal.jpg"),
+  bgSource: require("assets/images/UserData/Goal.jpg")
 });

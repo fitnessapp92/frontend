@@ -6,7 +6,7 @@ import {
   View,
   ImageBackground,
   Animated,
-  Easing,
+  Easing
 } from "react-native";
 
 import { styles } from "styles/screens/Greeting";
@@ -21,7 +21,7 @@ export default function Greeting({ navigation }) {
     setTimeout(() => {
       navigation.navigate("UserData");
       // 6000
-    }, 6000);
+    }, 0);
   }, []);
 
   useEffect(() => {
@@ -30,32 +30,30 @@ export default function Greeting({ navigation }) {
         toValue: 100,
         duration: 2000,
         delay: 500,
-        easing: Easing.bounce,
+        easing: Easing.bounce
       }),
       Animated.timing(lineAnimatedWidth, {
         toValue: 100,
-        duration: 1000,
+        duration: 1000
         // delay: 800,
         // easing: Easing.elastic
       }),
       Animated.timing(secondTextAnimatedHeight, {
         toValue: 100,
-        duration: 1000,
+        duration: 1000
         // easing: Easing.bounce
-      }),
+      })
     ]);
 
     const bgAnimation = [
       Animated.timing(bgAnimatedScale, {
         toValue: 100,
-        duration: 25000,
-      }),
+        duration: 25000
+      })
     ];
 
     Animated.parallel([textAnimations, ...bgAnimation]).start();
   }, []);
-
-  console.log("lineAnimatedWidth", lineAnimatedWidth);
 
   return (
     <View style={styles.container}>
@@ -67,11 +65,11 @@ export default function Greeting({ navigation }) {
               {
                 scale: bgAnimatedScale.interpolate({
                   inputRange: [0, 100],
-                  outputRange: [1, 1.3],
-                }),
-              },
-            ],
-          },
+                  outputRange: [1, 1.3]
+                })
+              }
+            ]
+          }
         ]}
       >
         <ImageBackground
@@ -88,11 +86,11 @@ export default function Greeting({ navigation }) {
                 {
                   translateY: firstTextAnimatedValue.interpolate({
                     inputRange: [0, 100],
-                    outputRange: [-600, 0],
-                  }),
-                },
-              ],
-            },
+                    outputRange: [-600, 0]
+                  })
+                }
+              ]
+            }
           ]}
         >
           <Text style={styles.text}>FITNESS APP</Text>
@@ -103,9 +101,9 @@ export default function Greeting({ navigation }) {
             {
               width: lineAnimatedWidth.interpolate({
                 inputRange: [0, 100],
-                outputRange: ["0%", "100%"],
-              }),
-            },
+                outputRange: ["0%", "100%"]
+              })
+            }
           ]}
         />
         <View style={[styles.slogan]}>
@@ -113,8 +111,8 @@ export default function Greeting({ navigation }) {
             style={{
               height: secondTextAnimatedHeight.interpolate({
                 inputRange: [0, 100],
-                outputRange: ["0%", "25%"],
-              }),
+                outputRange: ["0%", "25%"]
+              })
             }}
           >
             <Text style={styles.sloganText}>
