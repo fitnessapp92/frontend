@@ -8,7 +8,9 @@ export const styles = StyleSheet.create({
     marginTop: 20
   },
   goal: {
-    width: "95%",
-    marginTop: 20
+    width: "80%",
+    marginTop: 20,
+    backgroundColor: "rgba(19, 25, 29, 0.48)",
+    borderWidth: 4
   }
 });

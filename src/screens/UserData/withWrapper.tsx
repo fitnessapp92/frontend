@@ -20,7 +20,6 @@ const withWrapper = (
   { header, bgSource, nextComponent }: Props
 ) => {
   return (props) => {
-    console.log("props", props);
     let content = (
       <>
         <View style={styles.header}>

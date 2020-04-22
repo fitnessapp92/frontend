@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { ListItem } from "react-native-elements";
+import { Text, ListItem, Icon, useTheme } from "@ui-kitten/components";
 
 import { styles } from "styles/screens/UserData/Goal";
 
@@ -8,34 +8,48 @@ import withWrapper from "./withWrapper";
 
 const GOALS = [
   {
-    title: "Lose weight",
+    title: "LOSE WEIGHT",
     value: "lose_weight",
-    subtitle: "You will be stronger"
+    subtitle: "You will be stronger",
+    icon: "twitter"
   },
   {
-    title: "Get weight",
+    title: "GET WEIGHT",
     value: "get_weight",
-    subtitle: "You will be stronger"
+    subtitle: "You will be stronger",
+    icon: "shield-off"
   },
   {
-    title: "Get muscle",
-    value: "get_muscle",
-    subtitle: "You will be stronger"
+    title: "GET TONNED",
+    value: "get_tonned",
+    subtitle: "You will be stronger",
+    icon: "paper-plane"
+  },
+  {
+    title: "BUILD MUSCLE",
+    value: "build_muscle",
+    subtitle: "You will be stronger",
+    icon: "settings-2"
   }
 ];
 
 const Goal = ({ navigation }) => {
+  const theme = useTheme();
+  const borderColor = theme["color-primary-300"];
   return (
     <View style={styles.goals}>
       {GOALS.map((goal) => {
         return (
-          <View key={goal.value} style={styles.goal}>
-            <ListItem
-              title={goal.title}
-              subtitle={goal.subtitle}
-              onPress={() => navigation.navigate("PastExperience")}
-            />
-          </View>
+          <ListItem
+            key={goal.value}
+            style={{ ...styles.goal, borderColor }}
+            title={() => <Text category="h6">{goal.title}</Text>}
+            description={goal.subtitle}
+            accessoryLeft={(props) => (
+              <Icon style={styles.buttonIconNext} {...props} name={goal.icon} />
+            )}
+            onPress={() => navigation.navigate("PastExperience")}
+          />
         );
       })}
     </View>

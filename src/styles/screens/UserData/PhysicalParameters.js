@@ -30,36 +30,19 @@ export const styles = StyleSheet.create({
     zIndex: 50
   },
 
-  man: {
-    // position: "absolute"
-    // zIndex: 1
-    // right: "10%"
-    // transform: [
-    //   {
-    //     translateX: -200
-    //   }
-    // ],
-  },
-  wooman: {
-    // left: "90%"
-    // position: "absolute"
-  },
   genderButtons: {
     // paddingTop: 20,
     flexDirection: "row",
     justifyContent: "space-around"
   },
   genderBtn: {
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 15,
-    paddingBottom: 15
-    // paddingLeft: 20
-  },
-  activeGenderBtn: {
-    // padding: 20,
-    backgroundColor: "red"
-    // color: "black"
+    // paddingLeft: 30,
+    // paddingRight: 30,
+    // paddingTop: 15,
+    // paddingBottom: 15
+    // paddingLeft: 20,
+    width: "30%",
+    borderRadius: 0
   },
   sizes: {
     marginTop: 30,
@@ -69,30 +52,15 @@ export const styles = StyleSheet.create({
   age: {
     flexDirection: "row",
     justifyContent: "center"
-    // width: "100%",
-  },
-  weight: {},
-  height: {},
-  text: {},
-
-  input: {
-    backgroundColor: "rgba(19, 25, 29, 0.6)",
-    color: "#fff",
-    // borderColor: "rgba(19, 25, 29, 0.6)",
-    // borderRadius: 22,
-    borderWidth: 0
-  },
-  inputText: {
-    color: "#fff"
-    // fontSize: 19
-  },
-  buttonText: {},
-  genderBtn: {
-    width: "30%",
-    borderRadius: 0
   },
   size: {
     width: "30%"
   },
-  weight: {}
+  genderrActiveBtn: {
+    backgroundColor: "rgba(245, 212, 209, 0.4)",
+    borderWidth: 0
+  },
+  genderActiveText: {
+    color: "#fff"
+  }
 });

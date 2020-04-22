@@ -44,24 +44,22 @@ export default class BaseInput extends Component {
     };
   }
 
-  componentWillReceiveProps(newProps) {
-    const newValue = newProps.value;
-    if (newProps.hasOwnProperty("value") && newValue !== this.state.value) {
-      this.setState({
-        value: newValue
-      });
+  // componentWillReceiveProps(newProps) {
+  //   const value = newProps?.value;
+  //   if (value && value !== this.state.value) {
+  //     this.setState({ value });
 
-      // animate input if it's active state has changed with the new value
-      // and input is not focused currently.
-      const isFocused = this.inputRef().isFocused();
-      if (!isFocused) {
-        const isActive = Boolean(newValue);
-        if (isActive !== this.isActive) {
-          this._toggle(isActive);
-        }
-      }
-    }
-  }
+  //     // animate input if it's active state has changed with the new value
+  //     // and input is not focused currently.
+  //     const isFocused = this.inputRef().isFocused();
+  //     if (!isFocused) {
+  //       const isActive = Boolean(value);
+  //       if (isActive !== this.isActive) {
+  //         this._toggle(isActive);
+  //       }
+  //     }
+  //   }
+  // }
 
   _onLayout(event) {
     this.setState({

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import { Text, Button, Slider } from "react-native-elements";
+import { Text, Button } from "react-native-elements";
+import Slider from "@react-native-community/slider";
 
 import withWrapper from "./withWrapper";
 
@@ -44,7 +45,13 @@ const PastExperience = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.slider}>
-        <Slider value={value} onValueChange={(value) => setValue(value)} />
+        <Slider
+          style={{ width: 200, height: 40 }}
+          minimumValue={0}
+          maximumValue={1}
+          minimumTrackTintColor="#FFFFFF"
+          maximumTrackTintColor="#000000"
+        />
       </View>
       <View style={styles.sliderTextContainer}>
         <View style={styles.sliderText}>

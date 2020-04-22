@@ -5,9 +5,10 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   View,
-  StyleSheet,
-  Text
+  StyleSheet
 } from "react-native";
+
+import { Text, useTheme } from "@ui-kitten/components";
 
 import BaseInput from "./BaseInput";
 
@@ -17,7 +18,8 @@ export class Madoka extends BaseInput {
     animationDuration: 250,
     labelHeight: 24,
     inputPadding: 16,
-    height: 48
+    height: 48,
+    accessoryRight: null
   };
 
   render() {
@@ -29,17 +31,10 @@ export class Madoka extends BaseInput {
       labelHeight,
       inputStyle,
       labelStyle,
-      borderColor
+      borderColor,
+      accessoryRight
     } = this.props;
     const { width, focusedAnim, value } = this.state;
-
-    // <View style={styles.switch}>
-    //   <Text>Ex</Text>
-    // </View>;
-
-    console.log("value", value);
-    console.log("width", width);
-    console.log("focusedAnim", focusedAnim);
 
     return (
       <View
@@ -49,24 +44,37 @@ export class Madoka extends BaseInput {
         <View
           style={[styles.inputContainer, { borderBottomColor: borderColor }]}
         >
-          <TextInput
-            ref={this.input}
-            {...this.props}
-            style={[
-              styles.textInput,
-              inputStyle,
-              {
-                width,
-                height: inputHeight,
-                paddingHorizontal: inputPadding
-              }
-            ]}
-            value={value}
-            onBlur={this._onBlur}
-            onChange={this._onChange}
-            onFocus={this._onFocus}
-            underlineColorAndroid={"transparent"}
-          />
+          <View style={[styles.inputWrapper, width]}>
+            <TextInput
+              ref={this.input}
+              {...this.props}
+              style={[
+                styles.textInput,
+                inputStyle,
+                {
+                  // width,
+                  height: inputHeight,
+                  paddingHorizontal: inputPadding
+                }
+              ]}
+              value={value}
+              onBlur={this._onBlur}
+              onChange={this._onChange}
+              onFocus={this._onFocus}
+              underlineColorAndroid={"transparent"}
+            />
+            <Animated.View
+              style={[
+                styles.switch,
+                {
+                  height: inputHeight - 2,
+                  opacity: focusedAnim
+                }
+              ]}
+            >
+              {accessoryRight}
+            </Animated.View>
+          </View>
 
           {/* right border */}
           <Animated.View
@@ -159,17 +167,27 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#6a7989"
   },
+  inputWrapper: {
+    flexDirection: "row",
+    alignItems: "flex-end"
+
+    // alignItems: "flex-start",
+    // width:
+  },
   textInput: {
+    flex: 1,
     paddingVertical: 0,
     color: "black",
     fontSize: 18,
     fontWeight: "bold",
-
-    borderWidth: 1,
-    borderColor: "red"
+    width: "62%"
   },
   switch: {
-    borderWidth: 1,
-    borderColor: "red"
+    width: "38%",
+    flex: 1,
+    flexDirection: "column-reverse"
+    // alignItems: "stretch",
+
+    // justifyContent: "flex-end"
   }
 });
