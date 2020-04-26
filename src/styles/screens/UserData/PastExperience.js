@@ -2,25 +2,26 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    width: "100%",
+    marginTop: 20
   },
 
   slider: {
-    width: "80%",
-    marginTop: 30
+    width: "80%"
   },
   sliderTextContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    // borderWidth: 1,
-    // borderColor: "green",
     width: "80%"
   },
   exerciseTime: {
-    width: "90%",
-    marginTop: 30
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 30,
+    marginBottom: 20
   },
   week: {
     flexDirection: "row",
@@ -44,8 +45,5 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     width: 44,
     height: 44
-  },
-  dayTitle: {
-    marginTop: -5
   }
 });

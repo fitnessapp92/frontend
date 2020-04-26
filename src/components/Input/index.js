@@ -52,7 +52,6 @@ export class Madoka extends BaseInput {
                 styles.textInput,
                 inputStyle,
                 {
-                  // width,
                   height: inputHeight,
                   paddingHorizontal: inputPadding
                 }

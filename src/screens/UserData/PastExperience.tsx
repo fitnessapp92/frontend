@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import { Text, Button } from "react-native-elements";
-import Slider from "@react-native-community/slider";
+import { Slider } from "react-native-elements";
+import { Text, Button, Input, useTheme } from "@ui-kitten/components";
 
 import withWrapper from "./withWrapper";
 
@@ -39,38 +39,59 @@ const WEEK_DAYS = [
 ];
 
 const PastExperience = ({ navigation }) => {
-  const [value, setValue] = useState(30);
+  const theme = useTheme();
+
+  const [value, setValue] = useState(0.3);
   const [weeks, setWeeks] = useState(["mon", "wed", "fri"]);
+
+  console.log("value", value);
+
+  const thumbStyle = {
+    borderRadius: 20,
+    width: 40,
+    height: 40
+  };
+
+  const thumbTouchSize = {
+    width: 50,
+    height: 50
+  };
+
+  const thumbTintColor = theme["color-primary-500"];
+
+  const minimumTrackTintColor = theme["color-basic-transparent-900"];
+  const maximumTrackTintColor = theme["color-primary-transparent-300"];
 
   return (
     <View style={styles.container}>
       <View style={styles.slider}>
         <Slider
-          style={{ width: 200, height: 40 }}
-          minimumValue={0}
-          maximumValue={1}
-          minimumTrackTintColor="#FFFFFF"
-          maximumTrackTintColor="#000000"
+          thumbStyle={thumbStyle}
+          thumbTouchSize={thumbTouchSize}
+          thumbTintColor={thumbTintColor}
+          minimumTrackTintColor={minimumTrackTintColor}
+          maximumTrackTintColor={maximumTrackTintColor}
+          value={value}
+          onValueChange={(value) => setValue(value)}
         />
       </View>
       <View style={styles.sliderTextContainer}>
         <View style={styles.sliderText}>
-          <Text h4>a little</Text>
+          <Text>a little</Text>
         </View>
         <View style={styles.sliderText}>
-          <Text h4>a lot</Text>
+          <Text>a lot</Text>
         </View>
       </View>
       <View style={styles.exerciseTime}>
-        <Text h2>Exercise time</Text>
+        <Text category="h1">Exercise time</Text>
       </View>
       <View style={styles.week}>
         {WEEK_DAYS.map(({ title, value }) => (
           <Button
             key={value}
-            title={title}
-            buttonStyle={styles.day}
-            titleStyle={styles.dayTitle}
+            size="small"
+            style={styles.day}
             disabled={!weeks.includes(value)}
             onPress={() =>
               setWeeks(
@@ -79,7 +100,9 @@ const PastExperience = ({ navigation }) => {
                   : [...weeks, value]
               )
             }
-          />
+          >
+            {title}
+          </Button>
         ))}
       </View>
     </View>

@@ -2,19 +2,29 @@ import React, { useState } from "react";
 import { TouchableHighlight, View, StyleSheet } from "react-native";
 import { Text } from "@ui-kitten/components";
 
-const AccessoryRight = ({ units, value }) => {
+const AccessoryRight = ({ units, value, onPress }) => {
   const [activeValue, setActiveValue] = useState(value);
+
+  const handleActiveValue = (value) => {
+    onPress(value);
+    setActiveValue(value);
+  };
 
   return (
     <View style={styles.container}>
       {units.map((unit) => (
         <TouchableHighlight
-          underlayColor="transparent"
+          underlayColor="#05CAB6"
           style={[styles.item, activeValue === unit.value && styles.activeBg]}
           key={unit.value}
-          onPress={() => setActiveValue(unit.value)}
+          onPress={() => handleActiveValue(unit.value)}
         >
-          <Text style={[activeValue === unit.value && styles.activeText]}>
+          <Text
+            style={[
+              styles.text,
+              activeValue === unit.value && styles.activeText
+            ]}
+          >
             {unit.title}
           </Text>
         </TouchableHighlight>
@@ -32,14 +42,17 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     justifyContent: "center",
     flexDirection: "row",
+    backgroundColor: "transparent"
+    // color: "#05CAB6"
+  },
+  text: {
+    color: "#05CAB6"
+  },
+  activeBg: {
     backgroundColor: "#05CAB6"
   },
-  text: {},
-  activeBg: {
-    backgroundColor: "transparent"
-  },
   activeText: {
-    color: "#05CAB6"
+    color: "#fff"
   }
 });
 

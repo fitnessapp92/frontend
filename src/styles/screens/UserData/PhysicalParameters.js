@@ -56,11 +56,10 @@ export const styles = StyleSheet.create({
   size: {
     width: "30%"
   },
-  genderrActiveBtn: {
-    backgroundColor: "rgba(245, 212, 209, 0.4)",
+  genderrInActiveBtn: {
     borderWidth: 0
   },
-  genderActiveText: {
+  genderInActiveText: {
     color: "#fff"
   }
 });
