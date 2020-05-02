@@ -99,5 +99,7 @@
   "color-danger-transparent-600": "rgba(255, 75, 35, 0.48)",
 
   "color2": "#F5D4D1",
-  "color-color2-transparent-600": "rgba(245, 212, 209, 0.6)"
+  "color-color2-transparent-600": "rgba(245, 212, 209, 0.6)",
+  "inactive-button-background": "$color-basic-transparent-300",
+  "inactive-button-text": "$color-primary-100"
 }

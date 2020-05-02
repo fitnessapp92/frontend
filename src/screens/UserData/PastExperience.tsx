@@ -44,8 +44,6 @@ const PastExperience = ({ navigation }) => {
   const [value, setValue] = useState(0.3);
   const [weeks, setWeeks] = useState(["mon", "wed", "fri"]);
 
-  console.log("value", value);
-
   const thumbStyle = {
     borderRadius: 20,
     width: 40,
@@ -61,6 +59,8 @@ const PastExperience = ({ navigation }) => {
 
   const minimumTrackTintColor = theme["color-basic-transparent-900"];
   const maximumTrackTintColor = theme["color-primary-transparent-300"];
+
+  console.log("render");
 
   return (
     <View style={styles.container}>
@@ -87,23 +87,34 @@ const PastExperience = ({ navigation }) => {
         <Text category="h1">Exercise time</Text>
       </View>
       <View style={styles.week}>
-        {WEEK_DAYS.map(({ title, value }) => (
-          <Button
-            key={value}
-            size="small"
-            style={styles.day}
-            disabled={!weeks.includes(value)}
-            onPress={() =>
-              setWeeks(
-                weeks.includes(value)
-                  ? weeks.filter((v) => v !== value)
-                  : [...weeks, value]
-              )
-            }
-          >
-            {title}
-          </Button>
-        ))}
+        {WEEK_DAYS.map(({ title, value }) => {
+          let btnStyle = { borderWidth: 0 };
+          if (weeks.includes(value)) {
+            btnStyle.backgroundColor = theme["inactive-button-background"];
+            // btnStyle = {
+            //   ...btnStyle,
+            //   backgroundColor: theme["inactive-button-background"]
+            // };
+          }
+
+          return (
+            <Button
+              key={value}
+              // size="small"
+              style={[styles.day, btnStyle]}
+              // disabled={!weeks.includes(value)}
+              onPress={() =>
+                setWeeks(
+                  weeks.includes(value)
+                    ? weeks.filter((v) => v !== value)
+                    : [...weeks, value]
+                )
+              }
+            >
+              {() => <Text category="h6">{title}</Text>}
+            </Button>
+          );
+        })}
       </View>
     </View>
   );

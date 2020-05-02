@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 0,
     paddingLeft: 0,
     paddingRight: 0,
-    borderRadius: 20,
+    borderRadius: 22,
     width: 44,
     height: 44
   }

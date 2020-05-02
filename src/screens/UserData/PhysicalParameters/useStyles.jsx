@@ -8,13 +8,13 @@ export const useStyles = (gender) => {
   const btnStyles = (type) => [
     styles.genderBtn,
     gender !== type && {
-      backgroundColor: theme["color-basic-transparent-300"],
+      backgroundColor: theme["inactive-button-background"],
       ...styles.genderrInActiveBtn
     }
   ];
 
   const textStyles = (type) => [
-    { color: theme["color-primary-100"] },
+    { color: theme["inactive-button-text"] },
     gender !== type && styles.genderInActiveText
   ];
 
