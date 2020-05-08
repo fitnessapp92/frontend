@@ -1,18 +1,16 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Greeting from "./Greeting";
-import UserData from "./UserData";
-import Main from "./Main";
+import { routes, RootStackParamList } from "./routes";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
-export default function () {
-  return (
-    <Stack.Navigator initialRouteName="Main" headerMode="none">
-      <Stack.Screen name="Greeting" component={Greeting} />
-      <Stack.Screen name="UserData" component={UserData} />
-      <Stack.Screen name="Main" component={Main} />
-    </Stack.Navigator>
-  );
-}
+const Screens: React.FC = () => (
+  <Stack.Navigator initialRouteName="Main" headerMode="none">
+    {routes.map(({ name, component }) => (
+      <Stack.Screen name={name} component={component} />
+    ))}
+  </Stack.Navigator>
+);
+
+export default Screens;

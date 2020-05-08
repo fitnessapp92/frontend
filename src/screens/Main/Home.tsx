@@ -6,7 +6,8 @@ import {
   Dimensions,
   ScrollView,
   TouchableWithoutFeedback,
-  TouchableHighlight
+  TouchableHighlight,
+  Button
 } from "react-native";
 import {
   Text,
@@ -38,7 +39,7 @@ const Header = ({ title }) => {
   );
 };
 
-export default function Main({ navigation }) {
+export default function Home({ navigation }) {
   const theme = useTheme();
   // onPress={() => navigation.navigate("Main")}
 
@@ -83,7 +84,7 @@ export default function Main({ navigation }) {
               key={v}
               activeOpacity={0.1}
               underlayColor="#fff"
-              onPress={() => navigation.navigate("Workout")}
+              onPress={() => navigation.navigate("Workouts")}
             >
               <ImageBackground source={cardImage} style={styles.cardImage}>
                 <View style={cardBgColor}>
@@ -128,7 +129,7 @@ export default function Main({ navigation }) {
               key={v}
               activeOpacity={0.1}
               underlayColor="#fff"
-              onPress={() => navigation.navigate("Workout")}
+              onPress={() => navigation.navigate("Workouts")}
             >
               <ImageBackground source={cardImage} style={styles.cardImage}>
                 <View style={cardBgColor}>
@@ -163,34 +164,6 @@ export default function Main({ navigation }) {
             </TouchableHighlight>
           ))}
         </Card>
-        {/* <Card
-          title="LEGS"
-          containerStyle={styles.row}
-          titleStyle={styles.titleStyle}
-          dividerStyle={styles.divider}
-        >
-          <ListItem
-            key="beginner"
-            title="LEGS BEGINNER"
-            subtitle={"maybe there will be some text"}
-            containerStyle={styles.item}
-            onPress={() => navigation.navigate("Workout")}
-          />
-          <ListItem
-            key="intermediate"
-            title="LEGS INTERMEDIATE"
-            subtitle={"maybe there will be some text"}
-            containerStyle={styles.item}
-            onPress={() => navigation.navigate("Workout")}
-          />
-          <ListItem
-            key="advanced"
-            title="LEGS ADVANCED"
-            subtitle={"maybe there will be some text"}
-            containerStyle={styles.item}
-            onPress={() => navigation.navigate("Workout")}
-          />
-        </Card> */}
       </ScrollView>
       {/* </ImageBackground> */}
     </View>

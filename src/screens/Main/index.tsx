@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { StyleSheet, ImageBackground, View } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import {
   BottomNavigation,
   BottomNavigationTab,
@@ -9,61 +10,32 @@ import {
 } from "@ui-kitten/components";
 import * as Icons from "@expo/vector-icons";
 
-import Home from "./Home";
-import Motivation from "./Motivation";
-import Settings from "./Settings";
-import Report from "./Report";
+import { routes } from "./routes";
+
+const Stack = createStackNavigator();
 
 // I'm not sure what exactly happens here,
 // but it enables gesture navigation
 const BottomTab = createMaterialTopTabNavigator();
 
-const navs = [
-  {
-    name: "Home",
-    title: "Home",
-    component: Home,
-    icon: {
-      library: "FontAwesome",
-      name: "home"
-    }
-  },
-  {
-    name: "Motivation",
-    title: "Motivation",
-    component: Motivation,
-    icon: {
-      library: "FontAwesome5",
-      name: "fist-raised"
-    }
-  },
-  {
-    name: "Report",
-    title: "Report",
-    component: Report,
-    icon: {
-      library: "MaterialCommunityIcons",
-      name: "account-circle"
-    }
-  },
-  {
-    name: "Settings",
-    title: "Settings",
-    component: Settings,
-    icon: {
-      library: "MaterialIcons",
-      name: "settings"
-    }
-  }
-];
-
 export default function Main({ navigation }) {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={MainTabs} />
+      {routes.screens.map(({ name, component }) => (
+        <Stack.Screen key={name} name={name} component={component} />
+      ))}
+    </Stack.Navigator>
+  );
+}
+
+export function MainTabs({ navigation }) {
   return (
     <BottomTab.Navigator
       tabBar={(props) => <TabBar {...props} />}
       tabBarPosition="bottom"
     >
-      {navs.map((nav, i) => {
+      {routes.tabs.map((nav, i) => {
         return (
           <BottomTab.Screen
             key={nav.name}
@@ -118,11 +90,17 @@ export const TabBar = (props) => {
     );
   };
 
+  const bottomNavigationBorder = {
+    // borderTopWidth: 1
+    // paddingTop: 20,
+    // borderColor: theme["color-basic-200"]
+  };
+
   return (
     <BottomNavigation
       selectedIndex={props.state.index}
       onSelect={onSelect}
-      style={styles.bottomNavigation}
+      style={[styles.bottomNavigation, bottomNavigationBorder]}
     >
       {props.state.routes.map(createNavigationTabForRoute)}
     </BottomNavigation>
@@ -146,7 +124,17 @@ export const styles = StyleSheet.create({
     // justifyContent: "center"
   },
   bottomNavigation: {
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8
+    },
+    shadowOpacity: 0.46,
+    shadowRadius: 11.14,
+
+    elevation: 20
   },
   labelStyle: {},
   navTitle: {

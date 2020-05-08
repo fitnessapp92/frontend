@@ -15,7 +15,7 @@ import { default as customMapping } from "./custom-mapping.json";
 // ! SRC - temp name
 import SRC from "src/screens";
 
-export default function App() {
+const App: React.FC = () => {
   let [fontsLoaded] = useFonts({
     "Overpass-SemiBold": require("./src/assets/fonts/overpass/Overpass-SemiBold.ttf"),
     "Overpass-Bold": require("./src/assets/fonts/overpass/Overpass-Bold.ttf"),
@@ -40,4 +40,6 @@ export default function App() {
       </ApplicationProvider>
     </>
   );
-}
+};
+
+export default App;

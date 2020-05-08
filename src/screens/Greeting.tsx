@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-// import { Text } from "react-native-elements";
 import {
   StyleSheet,
   Text,
@@ -8,10 +7,15 @@ import {
   Animated,
   Easing
 } from "react-native";
+import { GreetingScreenRouteProp } from "src/screens/routes";
 
 import { styles } from "styles/screens/Greeting";
 
-export default function Greeting({ navigation }) {
+type Props = {
+  navigation: GreetingScreenRouteProp;
+};
+
+const Greeting: React.FC<Props> = ({ navigation }) => {
   const firstTextAnimatedValue = useRef(new Animated.Value(0)).current;
   const lineAnimatedWidth = useRef(new Animated.Value(0)).current;
   const secondTextAnimatedHeight = useRef(new Animated.Value(0)).current;
@@ -123,4 +127,6 @@ export default function Greeting({ navigation }) {
       </View>
     </View>
   );
-}
+};
+
+export default Greeting;
