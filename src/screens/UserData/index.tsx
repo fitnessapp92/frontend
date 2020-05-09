@@ -1,25 +1,19 @@
 import React from "react";
 
-import {
-  TransitionSpecs,
-  HeaderStyleInterpolators,
-  createStackNavigator,
-  StackNavigationOptions,
-  TransitionPresets,
-} from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import PhysicalParameters from "./PhysicalParameters";
-import Goal from "./Goal";
-import PastExperience from "./PastExperience";
+import { routes, RootStackParamList } from "./routes";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
-export default function UserData() {
+const UserData: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName="Gender" headerMode="none">
-      <Stack.Screen name="Gender" component={PhysicalParameters} />
-      <Stack.Screen name="Goal" component={Goal} />
-      <Stack.Screen name="PastExperience" component={PastExperience} />
+    <Stack.Navigator initialRouteName="PhysicalParameters" headerMode="none">
+      {routes.map(({ name, component }) => (
+        <Stack.Screen name={name} component={component} />
+      ))}
     </Stack.Navigator>
   );
-}
+};
+
+export default UserData;
