@@ -11,7 +11,7 @@ import withWrapper from "../withWrapper";
 
 import { styles } from "styles/screens/UserData/PhysicalParameters";
 
-const PhysicalParameters = ({ navigation }) => {
+const PhysicalParameters: React.FC = () => {
   const theme = useTheme();
 
   const imageAnimatedValue = useRef(new Animated.Value(0)).current;

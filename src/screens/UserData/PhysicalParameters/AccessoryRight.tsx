@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { TouchableHighlight, View, StyleSheet } from "react-native";
 import { Text } from "@ui-kitten/components";
 
-const AccessoryRight = ({ units, value, onPress }) => {
+import { Units } from "./types";
+
+type Props = {
+  units: Units;
+};
+
+const AccessoryRight: React.FC<Props> = ({ units, value, onPress }) => {
   const [activeValue, setActiveValue] = useState(value);
 
   const handleActiveValue = (value) => {
