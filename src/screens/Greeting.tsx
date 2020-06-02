@@ -1,15 +1,9 @@
 import React, { useRef, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ImageBackground,
-  Animated,
-  Easing
-} from "react-native";
-import { GreetingScreenRouteProp } from "src/screens/routes";
+import { Text, View, ImageBackground, Animated, Easing } from "react-native";
 
 import { styles } from "styles/screens/Greeting";
+
+import { GreetingScreenRouteProp } from "src/screens/routes";
 
 type Props = {
   navigation: GreetingScreenRouteProp;

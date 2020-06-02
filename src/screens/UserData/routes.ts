@@ -5,7 +5,7 @@ import PhysicalParameters from "./PhysicalParameters";
 import Goal from "./Goal";
 import PastExperience from "./PastExperience";
 
-type typeRouteNames = "PhysicalParameters" | "Goal" | "PastExperience";
+export type typeRouteNames = "PhysicalParameters" | "Goal" | "PastExperience";
 
 type Routes = {
   name: typeRouteNames;

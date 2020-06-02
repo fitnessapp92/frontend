@@ -11,21 +11,23 @@ import withWrapper from "../withWrapper";
 
 import { styles } from "styles/screens/UserData/PhysicalParameters";
 
+import { Gender, InputVariants, WeightUnits, HeightUnits } from "./types";
+
 const PhysicalParameters: React.FC = () => {
   const theme = useTheme();
 
   const imageAnimatedValue = useRef(new Animated.Value(0)).current;
-  const [gender, setGender] = useState("female");
+  const [gender, setGender] = useState<Gender>("female");
 
   const [weight, setWeight] = useState("");
-  const [weightUnit, setWeightUnit] = useState("kg");
+  const [weightUnit, setWeightUnit] = useState<WeightUnits>("kg");
 
   const [height, setHeight] = useState("");
-  const [heightUnit, setHeightUnit] = useState("cm");
+  const [heightUnit, setHeightUnit] = useState<HeightUnits>("cm");
 
   const [age, setAge] = useState("");
 
-  const [activeInput, setActiceInput] = useState(null);
+  const [activeInput, setActiveInput] = useState<InputVariants | null>(null);
   const { maleBtn, maleText, femaleBtn, femaleText } = useStyles(gender);
 
   useEffect(() => {
@@ -57,12 +59,12 @@ const PhysicalParameters: React.FC = () => {
     />
   );
 
-  const getLabel = (name) => {
+  const getLabel = (name: Exclude<InputVariants, "age">) => {
     const v = { weight, weightUnit, height, heightUnit };
-    const unitValue = v[`${name}Unit`];
+    const unitKey = `${name}Unit` as "weightUnit" | "heightUnit";
 
     return `${capitalizeFirstLetter(name)}${
-      v[name] || activeInput === name ? `(${unitValue})` : ""
+      v[name] || activeInput === name ? `(${v[unitKey]})` : ""
     }`;
   };
 
@@ -128,9 +130,9 @@ const PhysicalParameters: React.FC = () => {
               labelStyle={{ color: "#EBEBEB" }}
               inputStyle={{ color: "#fff" }}
               value={weight}
-              onChange={({ nativeEvent: { text } }) => setWeight(text)}
-              onFocus={() => setActiceInput("weight")}
-              onBlur={() => setActiceInput(null)}
+              onChange={(text: string) => setWeight(text)}
+              onFocus={() => setActiveInput("weight")}
+              onBlur={() => setActiveInput(null)}
             />
           </View>
           <View style={[styles.size, styles.height]}>
@@ -143,9 +145,9 @@ const PhysicalParameters: React.FC = () => {
               labelStyle={{ color: "#EBEBEB" }}
               inputStyle={{ color: "#fff" }}
               value={height}
-              onChange={({ nativeEvent: { text } }) => setHeight(text)}
-              onFocus={() => setActiceInput("height")}
-              onBlur={() => setActiceInput(null)}
+              onChange={(text: string) => setHeight(text)}
+              onFocus={() => setActiveInput("height")}
+              onBlur={() => setActiveInput(null)}
             />
           </View>
         </View>
@@ -159,9 +161,9 @@ const PhysicalParameters: React.FC = () => {
               labelStyle={{ color: "#EBEBEB" }}
               inputStyle={{ color: "#fff" }}
               value={age}
-              onChange={({ nativeEvent: { text } }) => setAge(text)}
-              onFocus={() => setActiceInput("age")}
-              onBlur={() => setActiceInput(null)}
+              onChange={(text: string) => setAge(text)}
+              onFocus={() => setActiveInput("age")}
+              onBlur={() => setActiveInput(null)}
             />
           </View>
         </View>
@@ -172,6 +174,6 @@ const PhysicalParameters: React.FC = () => {
 
 export default withWrapper(PhysicalParameters, {
   header: "WHAT'S YOUR GENDER?",
-  nextComponent: "Goal"
+  nextRouteName: "Goal"
   // bgSource: require("assets/images/UserData/PhysicalParameters.jpg"),
 });

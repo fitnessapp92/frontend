@@ -7,7 +7,14 @@ import withWrapper from "./withWrapper";
 
 import { styles } from "styles/screens/UserData/PastExperience";
 
-const WEEK_DAYS = [
+type WeekValues = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
+
+type WeekDay = {
+  title: string;
+  value: WeekValues;
+};
+
+const WEEK_DAYS: WeekDay[] = [
   {
     title: "Mon",
     value: "mon"
@@ -38,11 +45,11 @@ const WEEK_DAYS = [
   }
 ];
 
-const PastExperience = ({ navigation }) => {
+const PastExperience: React.FC = () => {
   const theme = useTheme();
 
   const [value, setValue] = useState(0.3);
-  const [weeks, setWeeks] = useState(["mon", "wed", "fri"]);
+  const [weeks, setWeeks] = useState<WeekValues[]>(["mon", "wed", "fri"]);
 
   const thumbStyle = {
     borderRadius: 20,
@@ -56,11 +63,8 @@ const PastExperience = ({ navigation }) => {
   };
 
   const thumbTintColor = theme["color-primary-500"];
-
   const minimumTrackTintColor = theme["color-basic-transparent-900"];
   const maximumTrackTintColor = theme["color-primary-transparent-300"];
-
-  console.log("render");
 
   return (
     <View style={styles.container}>
@@ -87,31 +91,29 @@ const PastExperience = ({ navigation }) => {
         <Text category="h1">Exercise time</Text>
       </View>
       <View style={styles.week}>
-        {WEEK_DAYS.map(({ title, value }) => {
-          let btnStyle = { borderWidth: 0 };
-          if (weeks.includes(value)) {
+        {WEEK_DAYS.map((week) => {
+          let btnStyle: {
+            borderWidth: number;
+            backgroundColor?: string;
+          } = { borderWidth: 0 };
+
+          if (weeks.includes(week.value)) {
             btnStyle.backgroundColor = theme["inactive-button-background"];
-            // btnStyle = {
-            //   ...btnStyle,
-            //   backgroundColor: theme["inactive-button-background"]
-            // };
           }
 
           return (
             <Button
-              key={value}
-              // size="small"
+              key={week.value}
               style={[styles.day, btnStyle]}
-              // disabled={!weeks.includes(value)}
               onPress={() =>
                 setWeeks(
-                  weeks.includes(value)
-                    ? weeks.filter((v) => v !== value)
-                    : [...weeks, value]
+                  weeks.includes(week.value)
+                    ? weeks.filter((v) => v !== week.value)
+                    : [...weeks, week.value]
                 )
               }
             >
-              {() => <Text category="h6">{title}</Text>}
+              {() => <Text category="h6">{week.title}</Text>}
             </Button>
           );
         })}
@@ -122,6 +124,6 @@ const PastExperience = ({ navigation }) => {
 
 export default withWrapper(PastExperience, {
   header: "How often do you exercise?",
-  nextComponent: "Main",
+  nextRouteName: "Main",
   bgSource: require("assets/images/UserData/PastExperience.jpg")
 });

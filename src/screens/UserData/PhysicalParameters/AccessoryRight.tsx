@@ -2,16 +2,22 @@ import React, { useState } from "react";
 import { TouchableHighlight, View, StyleSheet } from "react-native";
 import { Text } from "@ui-kitten/components";
 
-import { Units } from "./types";
+import { Unit } from "./types";
 
-type Props = {
-  units: Units;
+type Props<T extends string> = {
+  units: Unit<T>[];
+  value: T;
+  onPress: (v: T) => void;
 };
 
-const AccessoryRight: React.FC<Props> = ({ units, value, onPress }) => {
-  const [activeValue, setActiveValue] = useState(value);
+const AccessoryRight = <T extends string>({
+  units,
+  value,
+  onPress
+}: Props<T>): React.ReactElement | null => {
+  const [activeValue, setActiveValue] = useState<T>(value);
 
-  const handleActiveValue = (value) => {
+  const handleActiveValue = (value: T) => {
     onPress(value);
     setActiveValue(value);
   };

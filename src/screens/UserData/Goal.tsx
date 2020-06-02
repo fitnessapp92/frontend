@@ -6,6 +6,12 @@ import { styles } from "styles/screens/UserData/Goal";
 
 import withWrapper from "./withWrapper";
 
+import { GoalScreenRouteProp } from "./routes";
+
+type Props = {
+  navigation: GoalScreenRouteProp;
+};
+
 const GOALS = [
   {
     title: "LOSE WEIGHT",
@@ -33,9 +39,10 @@ const GOALS = [
   }
 ];
 
-const Goal = ({ navigation }) => {
+const Goal: React.FC<Props> = ({ navigation }) => {
   const theme = useTheme();
   const borderColor = theme["color-primary-300"];
+
   return (
     <View style={styles.goals}>
       {GOALS.map((goal) => {

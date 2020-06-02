@@ -74,7 +74,7 @@ export default class BaseInput extends Component {
 
     const onChange = this.props.onChange;
     if (onChange) {
-      onChange(event);
+      onChange(event.nativeEvent.text);
     }
   }
 

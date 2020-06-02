@@ -2,22 +2,26 @@ import React from "react";
 import { View, ImageBackground, ImagePropsBase } from "react-native";
 import { Text, Layout, Button, Icon } from "@ui-kitten/components";
 
-import { styles } from "styles/screens/UserData/withWrapper";
+import { typeRouteNames } from "./routes";
 
-// ! TEMP
-type Props = {
-  header: string;
-  bgSource?: ImagePropsBase;
-  nextComponent?: string;
-};
+import { styles } from "styles/screens/UserData/withWrapper";
 
 const NextIcon = (props) => (
   <Icon style={styles.buttonIconNext} {...props} name="arrow-forward-outline" />
 );
 
-const withWrapper = (
+type WithWrapper = <P>(
+  component: React.ComponentType<P>,
+  data: {
+    header: string;
+    bgSource?: ImagePropsBase;
+    nextRouteName?: typeRouteNames;
+  }
+) => (props: P) => JSX.Element;
+
+const withWrapper: WithWrapper = (
   WrappedComponent,
-  { header, bgSource, nextComponent }: Props
+  { header, bgSource, nextRouteName }
 ) => {
   return (props) => {
     let content = (
@@ -28,13 +32,13 @@ const withWrapper = (
           </Text>
         </View>
         <WrappedComponent {...props} />
-        {nextComponent && (
+        {nextRouteName && (
           <View style={styles.nextBtnWrapper}>
             <Button
               appearance="outline"
               size="giant"
               accessoryRight={NextIcon}
-              onPress={() => props.navigation.navigate(nextComponent)}
+              onPress={() => props.navigation.navigate(nextRouteName)}
             >
               NEXT
             </Button>
@@ -59,3 +63,34 @@ const withWrapper = (
 };
 
 export default withWrapper;
+
+type PropsAreEqual<P> = (
+  prevProps: Readonly<P>,
+  nextProps: Readonly<P>
+) => boolean;
+
+const withSampleHoC = <P extends {}>(
+  component: {
+    (props: P): Exclude<React.ReactNode, undefined>;
+    displayName?: string;
+  },
+  memo?: PropsAreEqual<P> | false,
+
+  componentName = component.displayName ?? component.name
+): {
+  (props: P): JSX.Element;
+} => {
+  function WithSampleHoc(props: P) {
+    //Do something special to justify the HoC.
+    return component(props) as JSX.Element;
+  }
+
+  WithSampleHoc.displayName = `withSampleHoC(${componentName})`;
+
+  let wrappedComponent =
+    memo === false ? WithSampleHoc : React.memo(WithSampleHoc, propsAreEqual);
+
+  //copyStaticProperties(component, wrappedComponent);
+
+  return wrappedComponent as typeof WithSampleHoc;
+};

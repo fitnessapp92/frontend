@@ -1,11 +1,12 @@
-import React from "react";
 import { useTheme } from "@ui-kitten/components";
 import { styles } from "styles/screens/UserData/PhysicalParameters";
 
-export const useStyles = (gender) => {
+import { Gender } from "./types";
+
+export const useStyles = (gender: Gender) => {
   const theme = useTheme();
 
-  const btnStyles = (type) => [
+  const btnStyles = (type: Gender) => [
     styles.genderBtn,
     gender !== type && {
       backgroundColor: theme["inactive-button-background"],
@@ -13,7 +14,7 @@ export const useStyles = (gender) => {
     }
   ];
 
-  const textStyles = (type) => [
+  const textStyles = (type: Gender) => [
     { color: theme["inactive-button-text"] },
     gender !== type && styles.genderInActiveText
   ];

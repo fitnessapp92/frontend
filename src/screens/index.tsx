@@ -6,9 +6,9 @@ import { routes, RootStackParamList } from "./routes";
 const Stack = createStackNavigator<RootStackParamList>();
 
 const Screens: React.FC = () => (
-  <Stack.Navigator initialRouteName="Main" headerMode="none">
+  <Stack.Navigator initialRouteName="Greeting" headerMode="none">
     {routes.map(({ name, component }) => (
-      <Stack.Screen name={name} component={component} />
+      <Stack.Screen key={name} name={name} component={component} />
     ))}
   </Stack.Navigator>
 );
